@@ -1,0 +1,10 @@
+{
+  "BevID": 1,
+  "CatID": 1,
+  "Name": "Jever",
+  "Color": 4286259106,
+  "Alcohol": 0.049,
+  "Category": "Bier",
+  "TotalDrinkAmount": 4.0,
+  "TotalDrinkCount": 12
+}

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bierzaehler/core/use_cases/use_case.dart';
 import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
 import 'package:bierzaehler/features/beverage/domain/repositories/beverage_repository.dart';
 import 'package:bierzaehler/features/beverage/domain/use_cases/get_all_beverages.dart';
@@ -21,6 +22,7 @@ void main() {
   final tBeverages = [
     Beverage(
       beverageID: 1,
+      categoryID: 1,
       name: 'Jever',
       color: Color(0xff7b1fa2),
       alcohol: 0.049,
@@ -34,8 +36,8 @@ void main() {
     when(mockBeverageRepository.getAllBeverages())
         .thenAnswer((_) async => Right(tBeverages));
 
-    final result = await useCase.execute();
-    expect(result, tBeverages);
+    final result = await useCase(NoParams());
+    expect(result, Right(tBeverages));
     verify(mockBeverageRepository.getAllBeverages());
     verifyNoMoreInteractions(mockBeverageRepository);
   });
