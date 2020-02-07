@@ -34,7 +34,6 @@ void main() {
 
   group('getAllBeverages', () {
     test('should return all Beverages', () async {
-
       when(localDataSource.getAllBeverages())
           .thenAnswer((_) async => tBeverages);
 
@@ -43,8 +42,10 @@ void main() {
       expect(result, Right(tBeverages));
     });
 
-    test('shoult return NoDataFailure when there is no data selected', ()async{
-      when(localDataSource.getAllBeverages()).thenAnswer((_)async=>[]);
+    test('shoult return NoDataFailure when there is no data selected',
+        () async {
+      when(localDataSource.getAllBeverages())
+          .thenAnswer((_) => Future.error(NoDataFailure()));
 
       final result = await repository.getAllBeverages();
       verify(localDataSource.getAllBeverages());

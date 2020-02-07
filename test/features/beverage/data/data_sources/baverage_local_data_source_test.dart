@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/features/beverage/data/data_sources/beverage_local_data_source_impl.dart';
 import 'package:bierzaehler/features/beverage/data/models/beverage_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,23 +16,23 @@ void main() {
 
   final tData = [
     {
-      "BevID": 1,
-      "CatID": 1,
-      "Name": "Jever",
-      "Color": 4286259106,
-      "Alcohol": 0.049,
-      "Category": "Bier",
-      "TotalDrinkAmount": 4.0,
-      "TotalDrinkCount": 12
+      "bevID": 1,
+      "catID": 1,
+      "name": "Jever",
+      "color": 0xff7b1fa2,
+      "alcohol": 0.049,
+      "category": "Bier",
+      "totalDrinkAmount": 4.0,
+      "totalDrinkCount": 12
     }
   ];
 
   final tBeverages = [
     BeverageModel(
-      beverageID: 1,
-      categoryID: 1,
+      bevID: 1,
+      catID: 1,
       name: 'Jever',
-      color: Color(0xff7b1fa2),
+      colorNum: 0xff7b1fa2,
       alcohol: 0.049,
       category: 'Bier',
       totalDrinkAmount: 4,
@@ -61,7 +62,7 @@ void main() {
       try {
         final result = await dataSource.getAllBeverages();
       } catch (e) {
-        expect(e, isInstanceOf<DatabaseException>());
+        expect(e, isInstanceOf<SqlFailure>());
       }
     });
   });

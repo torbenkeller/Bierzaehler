@@ -11,10 +11,10 @@ class BeverageRepositoryImpl implements BeverageRepository {
   final BeverageLocalDataSource localDataSource;
 
   @override
-  Future<Either<Failure, List<Beverage>>> getAllBeverages() async {
-    final List<Beverage> result = await localDataSource.getAllBeverages();
-    return (result.isEmpty)
-        ? Left<Failure, List<Beverage>>(NoDataFailure())
-        : Right<Failure, List<Beverage>>(result);
+  Future<Either<Failure, List<Beverage>>> getAllBeverages() {
+    return Task<List<Beverage>>(() => localDataSource.getAllBeverages())
+        .attempt()
+        .mapLeftToFailure<List<Beverage>>()
+        .run();
   }
 }

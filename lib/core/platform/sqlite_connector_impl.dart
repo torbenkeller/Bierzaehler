@@ -14,7 +14,7 @@ class SqliteConnectorImpl implements SqliteConnector {
     if (_database != null) return _database;
     final String databasesPath = await databaseFactory.getDatabasesPath();
     _database =
-        await databaseFactory.openDatabase('$databasesPath Bierzaehler.db',
+        await databaseFactory.openDatabase(databasesPath + 'Bierzaehler.db',
             options: OpenDatabaseOptions(
                 version: 1,
                 onCreate: (Database db, int version) async {

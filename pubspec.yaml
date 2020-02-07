@@ -4,7 +4,7 @@ description: Optimal um seinen Bierkonsum zu kontrollieren.
 version: 7.0.0
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -16,7 +16,7 @@ dependencies:
   # Value equality
   equatable: ^1.0.3
   # Functional programming thingies
-  dartz: ^0.8.9
+  dartz: ^0.9.0-dev.5
   # Database access
   sqflite: ^1.2.0
   # Better errors in dev
@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: flutter
   mockito: ^4.1.1
   lint: ^1.1.1
+  build_runner: ^1.7.4
 
 flutter:
   uses-material-design: true
