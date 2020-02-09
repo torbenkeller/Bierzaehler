@@ -14,7 +14,6 @@ BeverageModel _$BeverageModelFromJson(Map<String, dynamic> json) {
     category: json['category'] as String,
     colorNum: json['color'] as int,
     alcohol: (json['alcohol'] as num).toDouble(),
-    totalDrinkAmount: (json['totalDrinkAmount'] as num).toDouble(),
     totalDrinkCount: json['totalDrinkCount'] as int,
   );
 }
@@ -24,7 +23,6 @@ Map<String, dynamic> _$BeverageModelToJson(BeverageModel instance) =>
       'name': instance.name,
       'category': instance.category,
       'alcohol': instance.alcohol,
-      'totalDrinkAmount': instance.totalDrinkAmount,
       'totalDrinkCount': instance.totalDrinkCount,
       'color': instance.colorNum,
       'bevID': instance.bevID,

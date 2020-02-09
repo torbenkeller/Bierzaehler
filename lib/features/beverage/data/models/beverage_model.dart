@@ -16,7 +16,6 @@ class BeverageModel extends Beverage {
     @required String category,
     @required this.colorNum,
     @required double alcohol,
-    @required double totalDrinkAmount,
     @required int totalDrinkCount,
   }) : super(
     beverageID: bevID,
@@ -25,7 +24,6 @@ class BeverageModel extends Beverage {
     category: category,
     color: Color(colorNum),
     alcohol: alcohol,
-    totalDrinkAmount: totalDrinkAmount,
     totalDrinkCount: totalDrinkCount,
   );
 

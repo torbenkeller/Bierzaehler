@@ -1,4 +1,4 @@
-{
+[{
   "bevID": 1,
   "catID": 1,
   "name": "Jever",
@@ -6,4 +6,4 @@
   "alcohol": 0.049,
   "category": "Bier",
   "totalDrinkCount": 12
-}
+}]

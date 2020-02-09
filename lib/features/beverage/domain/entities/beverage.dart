@@ -10,7 +10,6 @@ class Beverage extends Equatable {
     @required this.category,
     @required this.color,
     @required this.alcohol,
-    @required this.totalDrinkAmount,
     @required this.totalDrinkCount,
   });
 
@@ -20,7 +19,6 @@ class Beverage extends Equatable {
   final String category;
   final Color color;
   final double alcohol;
-  final double totalDrinkAmount;
   final int totalDrinkCount;
 
   @override
@@ -31,7 +29,6 @@ class Beverage extends Equatable {
         category,
         color,
         alcohol,
-        totalDrinkAmount,
         totalDrinkCount
       ];
 }

@@ -13,3 +13,5 @@ abstract class Failure extends Equatable{
 class NoDataFailure extends Failure {}
 
 class SqlFailure extends Failure {}
+
+class ArgumentFailure extends Failure{}
