@@ -28,4 +28,13 @@ class BeverageRepositoryImpl implements BeverageRepository {
         .mapLeftToFailure<Beverage>()
         .run();
   }
+
+  @override
+  Future<Either<Failure, Beverage>> updateBeverage(
+      UpdateBeverageParams params) {
+    return Task<Beverage>(() => localDataSource.updateBeverage(params))
+        .attempt()
+        .mapLeftToFailure<Beverage>()
+        .run();
+  }
 }

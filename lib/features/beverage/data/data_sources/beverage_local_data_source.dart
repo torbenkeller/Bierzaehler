@@ -8,4 +8,7 @@ abstract class BeverageLocalDataSource{
 
   /// Creates a new Beverage from params and returns the created Beverage.
   Future<BeverageModel> createNewBeverage(CreateBeverageParams params);
+
+  /// Updates the parameters of the old beverage and returns the updated one.
+  Future<BeverageModel> updateBeverage(UpdateBeverageParams params);
 }

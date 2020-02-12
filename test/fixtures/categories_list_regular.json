@@ -1,0 +1,10 @@
+[
+  {
+    "catID": 1,
+    "name": "Bier"
+  },
+  {
+    "catID": 2,
+    "name": "Wein"
+  }
+]

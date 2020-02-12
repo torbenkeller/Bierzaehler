@@ -7,8 +7,6 @@ import 'package:bierzaehler/features/beverage/presentation/pages/info_page.dart'
 import 'package:bierzaehler/features/beverage/presentation/pages/lists_page.dart';
 import 'package:bierzaehler/features/beverage/presentation/pages/no_beverages_content_page.dart';
 import 'package:bierzaehler/features/beverage/presentation/widgets/beverage_card.dart';
-import 'package:bierzaehler/injection_container.dart';
-import 'package:bierzaehler/old/my_flutter_app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

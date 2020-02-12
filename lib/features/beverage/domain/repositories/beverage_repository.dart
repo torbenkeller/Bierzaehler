@@ -8,4 +8,5 @@ abstract class BeverageRepository {
 
   Future<Either<Failure, Beverage>> createNewBeverage(
       CreateBeverageParams params);
+  Future<Either<Failure, Beverage>> updateBeverage(UpdateBeverageParams params);
 }

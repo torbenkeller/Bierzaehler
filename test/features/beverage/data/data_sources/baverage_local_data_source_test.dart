@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'dart:ui';
-
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
 import 'package:bierzaehler/features/beverage/data/data_sources/beverage_local_data_source_impl.dart';
 import 'package:bierzaehler/features/beverage/data/models/beverage_model.dart';
 import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sqflite/sqflite.dart';
@@ -85,6 +83,55 @@ void main() {
       verifyNoMoreInteractions(mockDatabase);
 
       expect(result, tBeverage);
+    });
+  });
+
+  group('updateBeverage', () {
+    final BeverageModel tBeverage = BeverageModel(
+      bevID: 1,
+      catID: 1,
+      name: 'Jever',
+      colorNum: 0xff7b1fa2,
+      alcohol: 0.049,
+      category: 'Bier',
+      totalDrinkCount: 12,
+    );
+
+    const UpdateBeverageParams params = UpdateBeverageParams(
+      old: Beverage(
+        beverageID: 1,
+        categoryID: 2,
+        name: 'Riesling',
+        color: Color(0x00000000),
+        alcohol: 0.15,
+        category: 'Wein',
+        totalDrinkCount: 12,
+      ),
+      newName: 'Jever',
+      newAlcohol: 0.049,
+      newColor: 0xff7b1fa2,
+      newCategoryName: 'Bier',
+    );
+    test('should return updated beverage', () async {
+      when(mockDatabase.transaction(any))
+          .thenAnswer((_) async => tBeverage.toJson());
+
+      final BeverageModel result = await dataSource.updateBeverage(params);
+
+      verify(mockDatabase.transaction(any));
+      verifyNoMoreInteractions(mockDatabase);
+      expect(result, tBeverage);
+    });
+    test('should throw Failure', ()async{
+      when(mockDatabase.transaction(any)).thenAnswer((_) async{
+        throw SqfliteDatabaseException('message', 'sql');
+      });
+      try{
+        await dataSource.updateBeverage(params);
+        expect(true, false);
+      }catch (e){
+        expect(e, isA<ArgumentFailure>());
+      }
     });
   });
 }

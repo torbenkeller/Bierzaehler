@@ -31,9 +31,9 @@ class BeverageLocalDataSourceImpl implements BeverageLocalDataSource {
 
   @override
   Future<BeverageModel> createNewBeverage(CreateBeverageParams params) async {
-    final Map<String, dynamic> result = await database
-        .transaction<Map<String, dynamic>>((Transaction txn) async {
-      try {
+    try {
+      final Map<String, dynamic> result = await database
+          .transaction<Map<String, dynamic>>((Transaction txn) async {
         final List<Map<String, dynamic>> category =
             await txn.rawQuery('select catID from category '
                 'where name = "${params.categoryName}";');
@@ -62,10 +62,54 @@ class BeverageLocalDataSourceImpl implements BeverageLocalDataSource {
           'catID': categoryID,
           'color': params.color,
         };
-      } on DatabaseException {
-        throw ArgumentFailure();
-      }
-    });
-    return BeverageModel.fromJson(result);
+      });
+      return BeverageModel.fromJson(result);
+    } on DatabaseException {
+      throw ArgumentFailure();
+    }
+  }
+
+  @override
+  Future<BeverageModel> updateBeverage(UpdateBeverageParams params) async {
+    try {
+      final Map<String, dynamic> result =
+          await database.transaction((Transaction txn) async {
+        final List<Map<String, dynamic>> category = await txn.rawQuery(
+            'select catID from Category'
+            ' where name = ?',
+            <String>[params.newCategoryName]);
+        int newCategoryID;
+        if (category.isEmpty) {
+          newCategoryID = await txn.rawInsert(
+              'insert into category (name) values (?)',
+              <String>[params.newCategoryName]);
+        } else {
+          newCategoryID = category[0]['catID'] as int;
+        }
+
+        final int beverageID = await txn.rawUpdate(
+            'update Beverage '
+            'set catID = ?, name = ?, color = ?, alcohol = ? '
+            'where bevID = ${params.old.beverageID}',
+            <dynamic>[
+              newCategoryID,
+              params.newName,
+              params.newColor,
+              params.newAlcohol,
+            ]);
+        return <String, dynamic>{
+          'alcohol': params.newAlcohol,
+          'name': params.newName,
+          'totalDrinkCount': params.old.totalDrinkCount,
+          'category': params.newCategoryName,
+          'bevID': beverageID,
+          'catID': newCategoryID,
+          'color': params.newColor,
+        };
+      });
+      return BeverageModel.fromJson(result);
+    } on DatabaseException {
+      throw ArgumentFailure();
+    }
   }
 }

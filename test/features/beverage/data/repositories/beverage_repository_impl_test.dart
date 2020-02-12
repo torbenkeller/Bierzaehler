@@ -46,8 +46,8 @@ void main() {
 
     test('shoult return NoDataFailure when there is no data selected',
         () async {
-      when(mockLocalDataSource.getAllBeverages())
-          .thenAnswer((_) => Future<List<BeverageModel>>.error(NoDataFailure()));
+      when(mockLocalDataSource.getAllBeverages()).thenAnswer(
+          (_) => Future<List<BeverageModel>>.error(NoDataFailure()));
 
       final Either<Failure, List<Beverage>> result =
           await repository.getAllBeverages();
@@ -92,6 +92,58 @@ void main() {
           await repository.createNewBeverage(params);
       verify(mockLocalDataSource.createNewBeverage(params));
       expect(result, Left<Failure, Beverage>(ArgumentFailure()));
+    });
+  });
+
+  group('updateBeverage', () {
+    final BeverageModel tBeverage = BeverageModel(
+      bevID: 1,
+      catID: 1,
+      name: 'Jever',
+      colorNum: 0xff7b1fa2,
+      alcohol: 0.049,
+      category: 'Bier',
+      totalDrinkCount: 12,
+    );
+
+    const UpdateBeverageParams params = UpdateBeverageParams(
+      old: Beverage(
+        beverageID: 1,
+        categoryID: 2,
+        name: 'Riesling',
+        color: Color(0x00000000),
+        alcohol: 0.15,
+        category: 'Wein',
+        totalDrinkCount: 12,
+      ),
+      newName: 'Jever',
+      newAlcohol: 0.049,
+      newColor: 0xff7b1fa2,
+      newCategoryName: 'Bier',
+    );
+
+    test('should return beverage', () async {
+      when(mockLocalDataSource.updateBeverage(params))
+          .thenAnswer((_) async => tBeverage);
+
+      final Beverage result = (await repository.updateBeverage(params))
+          .fold((_) => null, (Beverage b) => b);
+
+      verify(mockLocalDataSource.updateBeverage(params));
+      verifyNoMoreInteractions(mockLocalDataSource);
+      expect(result, tBeverage);
+    });
+
+    test('should return failure', () async {
+      when(mockLocalDataSource.updateBeverage(params)).thenAnswer((_) async {
+        throw ArgumentFailure();
+      });
+      final Failure result = (await repository.updateBeverage(params))
+          .fold((Failure f) => f, (_) => null);
+
+      verify(mockLocalDataSource.updateBeverage(params));
+      verifyNoMoreInteractions(mockLocalDataSource);
+      expect(result, ArgumentFailure());
     });
   });
 }
