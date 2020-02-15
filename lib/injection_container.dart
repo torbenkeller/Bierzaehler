@@ -13,6 +13,12 @@ import 'package:bierzaehler/features/category/data/repositories/category_reposit
 import 'package:bierzaehler/features/category/domain/repositories/category_repoitory.dart';
 import 'package:bierzaehler/features/category/domain/use_cases/get_all_categories.dart';
 import 'package:bierzaehler/features/category/presentation/manager/category_list_change_notifier.dart';
+import 'package:bierzaehler/features/drink/data/data_sources/drink_local_data_source.dart';
+import 'package:bierzaehler/features/drink/data/data_sources/drink_local_data_source_impl.dart';
+import 'package:bierzaehler/features/drink/data/repositories/drink_repository_impl.dart';
+import 'package:bierzaehler/features/drink/domain/repositories/drink_repository.dart';
+import 'package:bierzaehler/features/drink/domain/use_cases/get_all_drinks_for_beverage.dart';
+import 'package:bierzaehler/features/drink/presentation/manager/drink_list_cange_notifier.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -23,36 +29,47 @@ Future<void> init() async {
   sl.registerSingleton(SqliteConnectorImpl(databaseFactory: databaseFactory));
 
   final Database database =
-      await sl<SqliteConnectorImpl>().getDatabaseInstance();
+  await sl<SqliteConnectorImpl>().getDatabaseInstance();
   // Data Sources
   sl.registerLazySingleton<BeverageLocalDataSource>(
-      () => BeverageLocalDataSourceImpl(database: database));
+          () => BeverageLocalDataSourceImpl(database));
   sl.registerLazySingleton<CategoryLocalDataSource>(
-      () => CategoryLocalDataSourceImpl(database: database));
+          () => CategoryLocalDataSourceImpl(database));
+  sl.registerLazySingleton<DrinkLocalDataSource>(
+          () => DrinkLocalDataSourceImpl(database));
 
   //Repositories
   sl.registerLazySingleton<BeverageRepository>(() =>
       BeverageRepositoryImpl(localDataSource: sl<BeverageLocalDataSource>()));
   sl.registerLazySingleton<CategoryRepository>(() =>
       CategoryRepositoryImpl(localDataSource: sl<CategoryLocalDataSource>()));
+  sl.registerLazySingleton<DrinkRepository>(
+          () =>
+          DrinkRepositoryImpl(localDataSource: sl<DrinkLocalDataSource>()));
 
   // Use cases
   sl.registerLazySingleton<GetAllBeverages>(
-      () => GetAllBeverages(sl<BeverageRepository>()));
+          () => GetAllBeverages(sl<BeverageRepository>()));
   sl.registerLazySingleton<CreateNewBeverage>(
-      () => CreateNewBeverage(sl<BeverageRepository>()));
+          () => CreateNewBeverage(sl<BeverageRepository>()));
   sl.registerLazySingleton<UpdateBeverage>(
-      () => UpdateBeverage(sl<BeverageRepository>()));
+          () => UpdateBeverage(sl<BeverageRepository>()));
   sl.registerLazySingleton<GetAllCategories>(
-      () => GetAllCategories(sl<CategoryRepository>()));
+          () => GetAllCategories(sl<CategoryRepository>()));
+  sl.registerLazySingleton<GetAllDrinksForBeverage>(
+          () => GetAllDrinksForBeverage(sl<DrinkRepository>()));
 
   // Managers
   sl.registerFactory<BeveragesListChangeNotifier>(
-      () => BeveragesListChangeNotifier(
+          () =>
+          BeveragesListChangeNotifier(
             getAllBeverages: sl<GetAllBeverages>(),
             createNewBeverage: sl<CreateNewBeverage>(),
             updateBeverage: sl<UpdateBeverage>(),
           ));
   sl.registerFactory<CategoryListChangeNotifier>(() =>
       CategoryListChangeNotifier(getAllCategories: sl<GetAllCategories>()));
+  sl.registerFactory<DrinkListChangeNotifier>(() =>
+      DrinkListChangeNotifier(
+          getAllDrinksForBeverage: sl<GetAllDrinksForBeverage>()));
 }

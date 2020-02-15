@@ -36,12 +36,6 @@ class CreateBeverageParams extends Equatable {
 }
 
 class UpdateBeverageParams extends Equatable {
-  final Beverage old;
-  final String newCategoryName;
-  final String newName;
-  final int newColor;
-  final double newAlcohol;
-
   const UpdateBeverageParams({
     @required this.old,
     @required this.newCategoryName,
@@ -50,7 +44,22 @@ class UpdateBeverageParams extends Equatable {
     @required this.newAlcohol,
   });
 
+  final Beverage old;
+  final String newCategoryName;
+  final String newName;
+  final int newColor;
+  final double newAlcohol;
+
   @override
   List<Object> get props =>
       <Object>[old, newCategoryName, newName, newColor, newAlcohol];
+}
+
+class GetAllDrinksForBeverageParams extends Equatable {
+  const GetAllDrinksForBeverageParams({@required this.beverageID});
+
+  final int beverageID;
+
+  @override
+  List<Object> get props => <int>[beverageID];
 }

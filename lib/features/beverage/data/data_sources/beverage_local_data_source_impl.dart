@@ -3,10 +3,9 @@ import 'package:bierzaehler/core/use_cases/use_case.dart';
 import 'package:bierzaehler/features/beverage/data/data_sources/beverage_local_data_source.dart';
 import 'package:bierzaehler/features/beverage/data/models/beverage_model.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:meta/meta.dart';
 
 class BeverageLocalDataSourceImpl implements BeverageLocalDataSource {
-  const BeverageLocalDataSourceImpl({@required this.database});
+  const BeverageLocalDataSourceImpl(this.database);
 
   final Database database;
 

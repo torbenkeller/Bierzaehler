@@ -1,5 +1,6 @@
 import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
 import 'package:bierzaehler/features/beverage/presentation/pages/create_new_beverage_page.dart';
+import 'package:bierzaehler/features/drink/presentation/pages/beverage_page.dart';
 import 'package:bierzaehler/old/my_flutter_app_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,10 @@ class BeverageCard extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(30.0))),
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+        onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
+            builder: (_) => BeveragePage(
+                  beverage: beverage,
+                ))),
         onLongPress: () => Navigator.of(context).push(MaterialPageRoute<void>(
             fullscreenDialog: true,
             builder: (_) => CreateNewBeveragePage(

@@ -20,7 +20,7 @@ void main() {
 
   setUp(() {
     mockDatabase = MockDatabase();
-    dataSource = BeverageLocalDataSourceImpl(database: mockDatabase);
+    dataSource = BeverageLocalDataSourceImpl(mockDatabase);
   });
 
   group('getAllBeverages', () {

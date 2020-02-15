@@ -2,10 +2,9 @@ import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/features/category/data/data_sources/category_local_data_source.dart';
 import 'package:bierzaehler/features/category/data/models/category_model.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:meta/meta.dart';
 
 class CategoryLocalDataSourceImpl implements CategoryLocalDataSource {
-  CategoryLocalDataSourceImpl({@required this.database});
+  CategoryLocalDataSourceImpl(this.database);
 
   final Database database;
 

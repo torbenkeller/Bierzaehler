@@ -1,0 +1,14 @@
+{
+  "driID": 1,
+  "size": 0.33,
+  "prices": [
+    {
+      "priID": 1,
+      "price": 2.0
+    },
+    {
+      "priID": 2,
+      "price": 2.5
+    }
+  ]
+}
