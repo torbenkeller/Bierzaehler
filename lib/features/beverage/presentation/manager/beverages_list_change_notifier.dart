@@ -37,8 +37,8 @@ class BeveragesListChangeNotifier with ChangeNotifier {
     final List<Beverage> currentList =
         _beverageList?.fold((_) => null, (List<Beverage> list) => list) ??
             <Beverage>[];
-    _beverageList =
-        Right<Failure, List<Beverage>>(currentList..add(newBeverage));
+    _beverageList = Right<Failure, List<Beverage>>(
+        List<Beverage>.from(currentList)..add(newBeverage));
     notifyListeners();
     return true;
   }

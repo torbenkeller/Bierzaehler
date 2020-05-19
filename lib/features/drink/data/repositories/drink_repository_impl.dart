@@ -21,4 +21,12 @@ class DrinkRepositoryImpl implements DrinkRepository {
         .mapLeftToFailure<List<Drink>>()
         .run();
   }
+
+  @override
+  Future<Either<Failure, Drink>> createNewDrink(CreateNewDrinkParams params) {
+    return Task<Drink>(() => localDataSource.createNewDrink(params))
+        .attempt()
+        .mapLeftToFailure<Drink>()
+        .run();
+  }
 }

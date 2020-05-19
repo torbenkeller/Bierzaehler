@@ -20,7 +20,7 @@ void main() {
     repository = DrinkRepositoryImpl(localDataSource: mockLocalDataSource);
   });
 
-  group('getAllBeverages', () {
+  group('getAllDrinksForBeverage', () {
     const GetAllDrinksForBeverageParams params =
         GetAllDrinksForBeverageParams(beverageID: 1);
     const List<DrinkModel> tDrinks = <DrinkModel>[
@@ -42,7 +42,7 @@ void main() {
       ),
     ];
 
-    test('should return all Beverages', () async {
+    test('should return all Drinks for Beverage', () async {
       when(mockLocalDataSource.getAllDrinksForBeverage(params))
           .thenAnswer((_) async => tDrinks);
 
@@ -52,14 +52,46 @@ void main() {
       expect(result, const Right<Failure, List<DrinkModel>>(tDrinks));
     });
 
-    test('shoult return NoDataFailure when there is no data selected',
-        () async {
+    test('shoult return NoDataFailure when there is no data', () async {
       when(mockLocalDataSource.getAllDrinksForBeverage(params))
           .thenAnswer((_) => Future<List<DrinkModel>>.error(NoDataFailure()));
 
       final Either<Failure, List<Drink>> result =
           await repository.getAllDrinksForBeverage(params);
       verify(mockLocalDataSource.getAllDrinksForBeverage(params));
+      expect(result, Left<Failure, List<Drink>>(NoDataFailure()));
+    });
+  });
+
+  group('createNewDrink', () {
+    const CreateNewDrinkParams params =
+        CreateNewDrinkParams(beverageID: 1, price: 1, size: 0.33);
+    const DrinkModel tDrink = DrinkModel(
+      driID: 1,
+      size: 0.33,
+      pricesConvert: <PriceModel>[
+        PriceModel(price: 1, priID: 1),
+      ],
+    );
+
+    test('should return new Drink', () async {
+      when(mockLocalDataSource.createNewDrink(params))
+          .thenAnswer((_) async => tDrink);
+
+      final Either<Failure, Drink> result =
+          await repository.createNewDrink(params);
+      verify(mockLocalDataSource.createNewDrink(params));
+      expect(result, const Right<Failure, DrinkModel>(tDrink));
+    });
+
+    test('shoult return NoDataFailure when there is no data selected',
+        () async {
+      when(mockLocalDataSource.createNewDrink(params))
+          .thenAnswer((_) => Future<DrinkModel>.error(NoDataFailure()));
+
+      final Either<Failure, Drink> result =
+          await repository.createNewDrink(params);
+      verify(mockLocalDataSource.createNewDrink(params));
       expect(result, Left<Failure, List<Drink>>(NoDataFailure()));
     });
   });

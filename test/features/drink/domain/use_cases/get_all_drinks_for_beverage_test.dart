@@ -41,7 +41,7 @@ void main() {
   const GetAllDrinksForBeverageParams params =
       GetAllDrinksForBeverageParams(beverageID: 1);
   group('getAllDrinksForBeverage', () {
-    test('shold return beverage', () async {
+    test('shold return drink', () async {
       when(mockDrinkRepository.getAllDrinksForBeverage(params))
           .thenAnswer((_) async => const Right<Failure, List<Drink>>(tDrinks));
 
@@ -52,12 +52,12 @@ void main() {
     });
     test('shold return failure', () async {
       when(mockDrinkRepository.getAllDrinksForBeverage(params))
-          .thenAnswer((_) async => Left<Failure, List<Drink>>(NoDataFailure()));
+          .thenAnswer((_) async => Left<Failure, List<Drink>>(SqlFailure()));
 
       final Either<Failure, List<Drink>> result = await useCase(params);
       verify(mockDrinkRepository.getAllDrinksForBeverage(params));
       verifyNoMoreInteractions(mockDrinkRepository);
-      expect(result, Left<Failure, List<Drink>>(NoDataFailure()));
+      expect(result, Left<Failure, List<Drink>>(SqlFailure()));
     });
   });
 }

@@ -6,4 +6,6 @@ import 'package:dartz/dartz.dart';
 abstract class DrinkRepository {
   Future<Either<Failure, List<Drink>>> getAllDrinksForBeverage(
       GetAllDrinksForBeverageParams params);
+
+  Future<Either<Failure, Drink>> createNewDrink(CreateNewDrinkParams params);
 }

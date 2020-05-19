@@ -4,4 +4,6 @@ import 'package:bierzaehler/features/drink/data/models/drink_model.dart';
 abstract class DrinkLocalDataSource {
   Future<List<DrinkModel>> getAllDrinksForBeverage(
       GetAllDrinksForBeverageParams params);
+
+  Future<DrinkModel> createNewDrink(CreateNewDrinkParams params);
 }

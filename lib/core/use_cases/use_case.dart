@@ -2,7 +2,7 @@ import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
@@ -62,4 +62,19 @@ class GetAllDrinksForBeverageParams extends Equatable {
 
   @override
   List<Object> get props => <int>[beverageID];
+}
+
+class CreateNewDrinkParams extends Equatable {
+  const CreateNewDrinkParams({
+    @required this.size,
+    @required this.price,
+    @required this.beverageID,
+  });
+
+  final double size;
+  final double price;
+  final int beverageID;
+
+  @override
+  List<Object> get props => <Object>[size, price, beverageID];
 }

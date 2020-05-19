@@ -14,7 +14,6 @@ void main() {
     size: 0.33,
     pricesConvert: <PriceModel>[
       PriceModel(priID: 1, price: 2.0),
-      PriceModel(priID: 2, price: 2.5),
     ],
   );
 
