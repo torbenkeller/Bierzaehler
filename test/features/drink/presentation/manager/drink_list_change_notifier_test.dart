@@ -1,10 +1,10 @@
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/drink/domain/entities/drink.dart';
-import 'package:bierzaehler/features/drink/domain/entities/price.dart';
+import 'package:bierzaehler/domain/drink/drink.dart';
+import 'package:bierzaehler/domain/drink/price.dart';
 import 'package:bierzaehler/features/drink/domain/use_cases/create_new_drink.dart';
 import 'package:bierzaehler/features/drink/domain/use_cases/get_all_drinks_for_beverage.dart';
-import 'package:bierzaehler/features/drink/presentation/manager/drink_list_cange_notifier.dart';
+import 'package:bierzaehler/application/drink/drink_list_cange_notifier.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

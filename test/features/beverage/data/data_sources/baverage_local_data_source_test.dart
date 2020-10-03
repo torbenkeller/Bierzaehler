@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/beverage/data/data_sources/beverage_local_data_source_impl.dart';
-import 'package:bierzaehler/features/beverage/data/models/beverage_model.dart';
-import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
+import 'package:bierzaehler/infrastructure/beverages/beverage_local_data_source.dart';
+import 'package:bierzaehler/infrastructure/beverages/beverage_model.dart';
+import 'package:bierzaehler/domain/beverages/beverage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,12 +15,12 @@ import '../../../../fixtures/fixture_reader.dart';
 class MockDatabase extends Mock implements Database {}
 
 void main() {
-  BeverageLocalDataSourceImpl dataSource;
+  BeverageLocalDataSource dataSource;
   MockDatabase mockDatabase;
 
   setUp(() {
     mockDatabase = MockDatabase();
-    dataSource = BeverageLocalDataSourceImpl(mockDatabase);
+    dataSource = BeverageLocalDataSource(mockDatabase);
   });
 
   group('getAllBeverages', () {

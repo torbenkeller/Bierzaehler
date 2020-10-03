@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:bierzaehler/core/error/failures.dart';
-import 'package:bierzaehler/features/category/data/data_sources/category_local_data_source_impl.dart';
-import 'package:bierzaehler/features/category/data/models/category_model.dart';
+import 'package:bierzaehler/infrastructure/category/category_local_data_source.dart';
+import 'package:bierzaehler/infrastructure/category/category_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:sqflite/sqflite.dart';
@@ -14,12 +14,12 @@ import '../../../../fixtures/fixture_reader.dart';
 class MockDatabase extends Mock implements Database {}
 
 void main() {
-  CategoryLocalDataSourceImpl dataSource;
+  CategoryLocalDataSource dataSource;
   MockDatabase mockDatabase;
 
   setUp(() {
     mockDatabase = MockDatabase();
-    dataSource = CategoryLocalDataSourceImpl(mockDatabase);
+    dataSource = CategoryLocalDataSource(mockDatabase);
   });
 
   group('getAllBeverages', () {

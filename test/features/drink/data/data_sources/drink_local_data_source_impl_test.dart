@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/drink/data/data_sources/drink_local_data_source_impl.dart';
-import 'package:bierzaehler/features/drink/data/models/drink_model.dart';
+import 'package:bierzaehler/infrastructure/drink/drink_local_data_source.dart';
+import 'package:bierzaehler/infrastructure/drink/drink_model.dart';
 import 'package:bierzaehler/features/drink/data/models/price_model.dart';
-import 'package:bierzaehler/features/drink/domain/entities/price.dart';
+import 'package:bierzaehler/domain/drink/price.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -17,12 +17,12 @@ import '../../../../fixtures/fixture_reader.dart';
 class MockDatabase extends Mock implements Database {}
 
 void main() {
-  DrinkLocalDataSourceImpl dataSource;
+  DrinkLocalDataSource dataSource;
   MockDatabase mockDatabase;
 
   setUp(() {
     mockDatabase = MockDatabase();
-    dataSource = DrinkLocalDataSourceImpl(mockDatabase);
+    dataSource = DrinkLocalDataSource(mockDatabase);
   });
 
   const List<DrinkModel> tDrinks = <DrinkModel>[

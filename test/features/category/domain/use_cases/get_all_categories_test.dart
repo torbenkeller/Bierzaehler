@@ -1,13 +1,13 @@
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/category/domain/entities/category.dart';
-import 'package:bierzaehler/features/category/domain/repositories/category_repoitory.dart';
+import 'package:bierzaehler/domain/category/category.dart';
+import 'package:bierzaehler/domain/category/i_category_repoitory.dart';
 import 'package:bierzaehler/features/category/domain/use_cases/get_all_categories.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockCategoriesRepository extends Mock implements CategoryRepository{}
+class MockCategoriesRepository extends Mock implements ICategoryRepository{}
 
 void main(){
   MockCategoriesRepository mockCategoriesRepository;

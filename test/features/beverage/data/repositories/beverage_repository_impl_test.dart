@@ -2,23 +2,23 @@ import 'dart:ui';
 
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/beverage/data/data_sources/beverage_local_data_source.dart';
-import 'package:bierzaehler/features/beverage/data/models/beverage_model.dart';
-import 'package:bierzaehler/features/beverage/data/repositories/beverage_repsository_impl.dart';
-import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
+import 'package:bierzaehler/infrastructure/beverages/i_beverage_local_data_source.dart';
+import 'package:bierzaehler/infrastructure/beverages/beverage_model.dart';
+import 'package:bierzaehler/infrastructure/beverages/beverage_repsository.dart';
+import 'package:bierzaehler/domain/beverages/beverage.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockLocalDataSource extends Mock implements BeverageLocalDataSource {}
+class MockLocalDataSource extends Mock implements IBeverageLocalDataSource {}
 
 void main() {
-  BeverageRepositoryImpl repository;
+  BeverageRepository repository;
   MockLocalDataSource mockLocalDataSource;
 
   setUp(() {
     mockLocalDataSource = MockLocalDataSource();
-    repository = BeverageRepositoryImpl(localDataSource: mockLocalDataSource);
+    repository = BeverageRepository(localDataSource: mockLocalDataSource);
   });
 
   group('getAllBeverages', () {

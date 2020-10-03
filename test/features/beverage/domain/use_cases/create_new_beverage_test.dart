@@ -2,14 +2,14 @@ import 'dart:ui';
 
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
-import 'package:bierzaehler/features/beverage/domain/repositories/beverage_repository.dart';
+import 'package:bierzaehler/domain/beverages/beverage.dart';
+import 'package:bierzaehler/domain/beverages/i_beverage_repository.dart';
 import 'package:bierzaehler/features/beverage/domain/use_cases/create_new_beverage.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockBeverageRepository extends Mock implements BeverageRepository {}
+class MockBeverageRepository extends Mock implements IBeverageRepository {}
 
 void main() {
   CreateNewBeverage useCase;

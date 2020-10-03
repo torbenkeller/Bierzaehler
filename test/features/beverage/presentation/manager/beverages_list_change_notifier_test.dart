@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
+import 'package:bierzaehler/domain/beverages/beverage.dart';
 import 'package:bierzaehler/features/beverage/domain/use_cases/create_new_beverage.dart';
 import 'package:bierzaehler/features/beverage/domain/use_cases/get_all_beverages.dart';
 import 'package:bierzaehler/features/beverage/domain/use_cases/update_beverage.dart';
-import 'package:bierzaehler/features/beverage/presentation/manager/beverages_list_change_notifier.dart';
+import 'package:bierzaehler/application/beverages/beverages_list_change_notifier.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';

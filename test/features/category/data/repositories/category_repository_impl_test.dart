@@ -1,23 +1,23 @@
 import 'package:bierzaehler/core/error/failures.dart';
-import 'package:bierzaehler/features/category/data/data_sources/category_local_data_source.dart';
-import 'package:bierzaehler/features/category/data/models/category_model.dart';
-import 'package:bierzaehler/features/category/data/repositories/category_repository_impl.dart';
-import 'package:bierzaehler/features/category/domain/entities/category.dart';
+import 'package:bierzaehler/infrastructure/category/i_category_local_data_source.dart';
+import 'package:bierzaehler/infrastructure/category/category_model.dart';
+import 'package:bierzaehler/infrastructure/category/category_repository.dart';
+import 'package:bierzaehler/domain/category/category.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 class MockCategoryLocalDataSource extends Mock
-    implements CategoryLocalDataSource {}
+    implements ICategoryLocalDataSource {}
 
 void main() {
   MockCategoryLocalDataSource mockLocalDataSource;
-  CategoryRepositoryImpl repository;
+  CategoryRepository repository;
 
   setUp(() {
     mockLocalDataSource = MockCategoryLocalDataSource();
     repository =
-        CategoryRepositoryImpl(localDataSource: mockLocalDataSource);
+        CategoryRepository(localDataSource: mockLocalDataSource);
   });
 
   const List<CategoryModel> tCategories = <CategoryModel>[

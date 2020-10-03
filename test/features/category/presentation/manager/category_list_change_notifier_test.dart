@@ -1,8 +1,8 @@
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/category/domain/entities/category.dart';
+import 'package:bierzaehler/domain/category/category.dart';
 import 'package:bierzaehler/features/category/domain/use_cases/get_all_categories.dart';
-import 'package:bierzaehler/features/category/presentation/manager/category_list_change_notifier.dart';
+import 'package:bierzaehler/application/category/category_list_change_notifier.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

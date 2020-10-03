@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:bierzaehler/features/beverage/data/models/beverage_model.dart';
-import 'package:bierzaehler/features/beverage/domain/entities/beverage.dart';
+import 'package:bierzaehler/infrastructure/beverages/beverage_model.dart';
+import 'package:bierzaehler/domain/beverages/beverage.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../fixtures/fixture_reader.dart';

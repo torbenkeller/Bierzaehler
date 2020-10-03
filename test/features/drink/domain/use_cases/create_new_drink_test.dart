@@ -1,15 +1,15 @@
 import 'package:bierzaehler/core/error/failures.dart';
 import 'package:bierzaehler/core/use_cases/use_case.dart';
-import 'package:bierzaehler/features/drink/domain/entities/drink.dart';
-import 'package:bierzaehler/features/drink/domain/entities/price.dart';
-import 'package:bierzaehler/features/drink/domain/repositories/drink_repository.dart';
+import 'package:bierzaehler/domain/drink/drink.dart';
+import 'package:bierzaehler/domain/drink/price.dart';
+import 'package:bierzaehler/domain/drink/i_drink_repository.dart';
 import 'package:bierzaehler/features/drink/domain/use_cases/create_new_drink.dart';
 import 'package:bierzaehler/features/drink/domain/use_cases/get_all_drinks_for_beverage.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockDrinkRepository extends Mock implements DrinkRepository {}
+class MockDrinkRepository extends Mock implements IDrinkRepository {}
 
 void main() {
   CreateNewDrink useCase;

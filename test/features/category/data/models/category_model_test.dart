@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:bierzaehler/features/category/data/models/category_model.dart';
+import 'package:bierzaehler/infrastructure/category/category_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
