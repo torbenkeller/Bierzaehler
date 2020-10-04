@@ -33,7 +33,7 @@ class DrinkLocalDataSource implements IDrinkLocalDataSource {
       });
       return result
           .map<DrinkModel>((Map<String, dynamic> json) => DrinkModel.fromJson(json))
-          .toList(growable: false);
+          .toList();
     } on DatabaseException {
       rethrow;
       //throw SqlFailure();

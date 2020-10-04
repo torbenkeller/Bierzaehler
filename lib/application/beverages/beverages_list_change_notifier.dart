@@ -16,8 +16,11 @@ class BeveragesListChangeNotifier with ChangeNotifier {
   Future<void> syncBeverageList() async {
     _setLoadingStatus(LoadingStatus.loading);
     try {
-      _beverageList = await _beverageRepository.getAllBeverages();
-    } catch (e) {}
+      _beverageList = await _beverageRepository.getAllBeverages() ?? [];
+    } catch (e) {
+      _beverageList = [];
+      print(e);
+    }
     _setLoadingStatus(LoadingStatus.complete);
   }
 

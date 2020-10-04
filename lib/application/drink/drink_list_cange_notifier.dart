@@ -18,7 +18,10 @@ class DrinkListChangeNotifier with ChangeNotifier {
     try {
       _drinksList = await _drinkRepository
           .getAllDrinksForBeverage(GetAllDrinksForBeverageParams(beverageID: beverageID));
-    } catch (e) {}
+    } catch (e) {
+      _drinksList = [];
+      print(e);
+    }
     _setLoadingStatus(LoadingStatus.complete);
   }
 

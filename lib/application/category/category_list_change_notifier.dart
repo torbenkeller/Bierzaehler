@@ -19,7 +19,10 @@ class CategoryListChangeNotifier with ChangeNotifier {
     _setLoadingStatus(LoadingStatus.loading);
     try {
       _categoriesList = await _categoryRepository.getAllCategories();
-    } catch (e) {}
+    } catch (e) {
+      _categoriesList = [];
+      print(e);
+    }
     _setLoadingStatus(LoadingStatus.complete);
   }
 
